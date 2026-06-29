@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+/*
+ * Brand tokens for Strike Freight & Logistics.
+ * [CONFIRM] navy + red are visual targets derived from the brief, not the
+ * real logo file. Update these two hex values once the client confirms
+ * exact brand colors and every component using the brand-navy / brand-red
+ * utility classes updates automatically.
+ */
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+
+  --brand-navy: #1e2a9c; /* [CONFIRM] exact hex from supplied logo */
+  --brand-navy-dark: #131c6e;
+  --brand-navy-light: #2d3bc4;
+  --brand-red: #e11d2a; /* [CONFIRM] exact hex from supplied logo/brand guide */
+  --brand-red-dark: #b51420;
+  /* Lighter red used only for small/eyebrow text on navy backgrounds —
+     full-strength brand-red fails WCAG contrast on navy. */
+  --brand-red-light: #fca5a5;
+  --brand-cloud: #f4f6fb;
+  --brand-ink: #0f172a;
+  --brand-line: #e2e6f0;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-navy-dark: var(--brand-navy-dark);
+  --color-brand-navy-light: var(--brand-navy-light);
+  --color-brand-red: var(--brand-red);
+  --color-brand-red-dark: var(--brand-red-dark);
+  --color-brand-red-light: var(--brand-red-light);
+  --color-brand-cloud: var(--brand-cloud);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-line: var(--brand-line);
+
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Respect users who've asked the OS to minimize motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Visible, consistent focus ring for keyboard navigation (WCAG). */
+:focus-visible {
+  outline: 2px solid var(--brand-red);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
