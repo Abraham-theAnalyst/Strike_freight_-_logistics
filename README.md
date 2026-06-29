@@ -144,7 +144,11 @@ status inline. The exact spot is marked with `// TODO`.
       currently uses `strikefrieghtlogistics@gmail.com`.
 - [ ] Registered/legal company name, if different from "Strike Freight & Logistics".
 - [ ] Exact Instagram, TikTok and Facebook handle URLs.
-- [ ] Live production domain (currently a placeholder: `https://www.strikefreightlogistics.com`).
+- [ ] Custom domain. The site is currently live at the real Vercel URL
+      (`https://strikefreightlogistics.vercel.app`, set as `SITE_URL` in `lib/site-data.ts`) — not
+      a placeholder. If you connect a custom domain (e.g. `www.strikefreightlogistics.com`) later,
+      update that one constant and canonical links, OG/Twitter tags, the sitemap, robots.txt and
+      the JSON-LD URL all follow automatically.
 - [ ] Real opening hours and closed days.
 
 **Pricing & shipping**

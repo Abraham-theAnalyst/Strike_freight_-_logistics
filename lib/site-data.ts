@@ -13,6 +13,12 @@
 // Core business info
 // -----------------------------------------------------------------------------
 
+// The site currently lives on Vercel's default domain. When a custom domain
+// (e.g. www.strikefreightlogistics.com) is connected, change ONLY this
+// constant — canonical links, Open Graph/Twitter tags, the sitemap,
+// robots.txt, and the JSON-LD URL are all generated from it.
+export const SITE_URL = "https://strikefreightlogistics.vercel.app";
+
 export const businessInfo = {
   name: "Strike Freight & Logistics",
   shortName: "Strike Freight",
@@ -21,11 +27,14 @@ export const businessInfo = {
   metaDescription:
     "Strike Freight & Logistics ships cargo, courier and shop-and-ship parcels between Nigeria and the USA, UK, Canada, Europe and Germany. Real Ogba office, weekly Friday shipping. Book on WhatsApp or get a quote.",
 
+  // WhatsApp line — used for every wa.me booking/quote link sitewide.
   // [CONFIRM] One flyer shows 09051178525, another shows 09051175825 — confirm
   // the correct live WhatsApp number with the client before launch.
   whatsappNumberRaw: "09051178525",
   whatsappNumberIntl: "2349051178525",
 
+  // Office/voice call line — intentionally different from the WhatsApp
+  // number above. Shown in the footer and used as the tel: link.
   phoneNumberRaw: "09028319799",
   phoneNumberIntl: "+2349028319799",
 
@@ -50,8 +59,7 @@ export const businessInfo = {
     facebook: "https://facebook.com/strikefreightlogistics", // [CONFIRM] exact handle URL
   },
 
-  // [CONFIRM] live production domain — used in metadata, sitemap & JSON-LD.
-  siteUrl: "https://www.strikefreightlogistics.com",
+  siteUrl: SITE_URL,
 
   hours: {
     weekdays: "Mon – Sat, 9:00am – 6:00pm", // [CONFIRM] real opening hours
@@ -127,7 +135,7 @@ export const timelines = {
 // calculator and route cards both render a "[CONFIRM]" flag whenever this
 // is false, so nothing reads as a final, guaranteed price.
 
-export type RateCurrency = "USD" | "GBP" | "EUR";
+export type RateCurrency = "USD" | "GBP" | "EUR" | "CAD";
 
 export interface RouteRate {
   amount: number;
@@ -169,8 +177,8 @@ export const routes: ShippingRoute[] = [
     name: "Canada",
     flag: "🇨🇦",
     blurb: "We move cargo and courier between Lagos and Canada, handled properly on both ends.",
-    cargoRate: { amount: 9, currency: "USD", confirmed: false },
-    courierRate: { amount: 13, currency: "USD", confirmed: false },
+    cargoRate: { amount: 9, currency: "CAD", confirmed: false },
+    courierRate: { amount: 13, currency: "CAD", confirmed: false },
     direction: ["import", "export"],
   },
   {
@@ -197,6 +205,7 @@ export const currencySymbols: Record<RateCurrency, string> = {
   USD: "$",
   GBP: "£",
   EUR: "€",
+  CAD: "C$",
 };
 
 // -----------------------------------------------------------------------------

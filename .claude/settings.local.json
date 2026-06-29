@@ -63,7 +63,9 @@
       "Bash(curl -s -o \"C:/Users/HP/AppData/Local/Temp/claude/c--Users-HP-OneDrive-Documents-Pabs-Claude-Project/04ece650-e023-4758-8662-7061e27392ae/scratchpad/check-boxes.jpg\" \"https://images.pexels.com/photos/5025503/pexels-photo-5025503.jpeg?auto=compress&cs=tinysrgb&w=400\")",
       "Bash(curl -s -o /dev/null -w \"services: %{http_code}\\\\n\" http://localhost:3000/services)",
       "Bash(curl -s -o /dev/null -w \"what-we-ship: %{http_code}\\\\n\" http://localhost:3000/what-we-ship)",
-      "Bash(node __verify_images.js)"
+      "Bash(node __verify_images.js)",
+      "Bash(taskkill //F //PID 12704)",
+      "Bash(curl -s http://localhost:3000/services)"
     ]
   }
 }
