@@ -135,7 +135,8 @@ status inline. The exact spot is marked with `// TODO`.
 **Brand**
 - [ ] Exact brand hex colors for navy and red, taken from the real logo file (`app/globals.css`,
       `--brand-navy` / `--brand-red`). Current values are a visual estimate from the brief.
-- [ ] Real logo file (vector preferred) — see "Where to add the logo and photos" above.
+- [x] Real logo file — `public/logo.png` (exported from the client-supplied PDF). Used in the
+      header and footer. Replace with `public/logo.svg` if a vector file becomes available.
 
 **Contact details** (`lib/site-data.ts` → `businessInfo`)
 - [ ] WhatsApp number — flyers show both `09051178525` and `09051175825`; the site currently uses

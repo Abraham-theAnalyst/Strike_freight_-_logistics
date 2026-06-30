@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, Mail, MapPin } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Badge from "@/components/ui/Badge";
@@ -13,8 +14,13 @@ export default function Footer() {
     <footer className="bg-brand-navy-dark text-white">
       <Container className="grid grid-cols-1 gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="text-lg font-extrabold uppercase tracking-tight">Strike Freight</p>
-          <p className="text-xs font-semibold uppercase tracking-wider text-brand-red">& Logistics</p>
+          <Image
+            src="/logo.png"
+            alt="Strike Freight & Logistics"
+            width={56}
+            height={56}
+            className="mb-3"
+          />
           <p className="mt-4 text-sm leading-relaxed text-white/80">
             International air freight, sea freight, courier and worldwide shopping between Nigeria and the world.
           </p>
