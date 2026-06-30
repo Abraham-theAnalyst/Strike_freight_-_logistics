@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Building2, ShieldCheck, MapPin } from "lucide-react";
+import Image from "next/image";
+import { ShieldCheck, MapPin } from "lucide-react";
 import PageHero from "@/components/ui/PageHero";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
-import PhotoPlaceholder from "@/components/ui/PhotoPlaceholder";
 import Button from "@/components/ui/Button";
 import CTABand from "@/components/ui/CTABand";
 import { trustReasons, businessInfo } from "@/lib/site-data";
@@ -50,11 +50,19 @@ export default function AboutPage() {
               See Drop-off / Office Location
             </Button>
           </div>
-          <PhotoPlaceholder
-            label="Photo: the Strike Freight team at the Ogba office. Replace at /public/images/about-team.jpg"
-            aspect="aspect-[4/3]"
-            icon={<Building2 className="h-10 w-10 text-slate-400" aria-hidden="true" />}
-          />
+          <figure className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+            <Image
+              src="/images/office-inside.jpg"
+              alt="A Strike Freight & Logistics team member processing shipments at the Ogba office"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover object-[center_30%]"
+              loading="lazy"
+            />
+            <figcaption className="absolute bottom-0 left-0 right-0 bg-black/50 px-4 py-2 text-xs text-white">
+              Our team, processing shipments at our Ogba office.
+            </figcaption>
+          </figure>
         </Container>
       </section>
 
@@ -87,8 +95,29 @@ export default function AboutPage() {
               {businessInfo.hours.weekdays}. {businessInfo.hours.note}
             </p>
             <div className="mt-6 grid grid-cols-2 gap-4">
-              <PhotoPlaceholder label="Photo: office storefront/signage" aspect="aspect-square" />
-              <PhotoPlaceholder label="Photo: inside the office" aspect="aspect-square" />
+              <figure className="relative aspect-square overflow-hidden rounded-xl">
+                <Image
+                  src="/images/office-front.jpg"
+                  alt="Strike Freight & Logistics office entrance at Suite H101, Ogba Central Mall, Ogba, Lagos"
+                  fill
+                  sizes="(min-width: 1024px) 20vw, 45vw"
+                  className="object-cover object-[center_25%]"
+                  loading="lazy"
+                />
+                <figcaption className="absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-1.5 text-xs text-white">
+                  Visit us at Suite H101, Ogba Central Mall, Ogba, Lagos.
+                </figcaption>
+              </figure>
+              <figure className="relative aspect-square overflow-hidden rounded-xl">
+                <Image
+                  src="/images/office-inside.jpg"
+                  alt="Inside the Strike Freight & Logistics office in Ogba, Lagos"
+                  fill
+                  sizes="(min-width: 1024px) 20vw, 45vw"
+                  className="object-cover object-[center_30%]"
+                  loading="lazy"
+                />
+              </figure>
             </div>
           </div>
           <div className="overflow-hidden rounded-2xl border border-brand-line">
