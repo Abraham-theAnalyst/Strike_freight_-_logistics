@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { CheckCircle2, Clock } from "lucide-react";
 import PageHero from "@/components/ui/PageHero";
 import Container from "@/components/ui/Container";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import PhotoPlaceholder from "@/components/ui/PhotoPlaceholder";
 import CTABand from "@/components/ui/CTABand";
-import { services } from "@/lib/site-data";
+import { services, courierPartners } from "@/lib/site-data";
 import { serviceIconMap } from "@/components/icons/icon-map";
 import { stockImages, serviceStockImages } from "@/lib/stock-images";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Services: Air Freight, Sea Freight, Courier & Worldwide Shopping",
+  title: "Services: Air Freight, Sea Freight & Courier",
   description:
-    "Air freight, sea freight, courier and worldwide shopping (shop-and-ship) between Nigeria and the USA, UK, Canada, Europe, Germany and beyond.",
+    "Air freight, sea freight and courier between Nigeria and the USA, UK, Canada, Europe, Germany and beyond.",
   path: "/services",
 });
 
@@ -23,7 +24,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Services"
         title="Whatever you're moving, however fast you need it."
-        description="Four services, one promise: safe handling, clear pricing, and a fixed weekly schedule you can plan around."
+        description="Air, sea or courier, each one handled carefully and priced clearly, on a fixed weekly schedule you can plan around."
       />
 
       <section className="py-14 sm:py-20">
@@ -59,6 +60,35 @@ export default function ServicesPage() {
                       <Clock className="h-4 w-4" aria-hidden="true" />
                       {service.timeline}
                     </p>
+
+                    {service.id === "courier" && (
+                      <div className="mt-5">
+                        <p className="text-xs font-bold uppercase tracking-wide text-slate-500">We partner with</p>
+                        <div className="mt-2 flex flex-wrap gap-3">
+                          {courierPartners.map((partner) =>
+                            // Drop a logo file at /public/images/partners/ and set
+                            // `partner.logo` in site-data.ts to render it here instead.
+                            partner.logo ? (
+                              <Image
+                                key={partner.name}
+                                src={partner.logo}
+                                alt={partner.name}
+                                width={96}
+                                height={32}
+                                className="h-8 w-auto object-contain"
+                              />
+                            ) : (
+                              <span
+                                key={partner.name}
+                                className="rounded-lg border border-brand-line bg-brand-cloud px-3 py-1.5 text-sm font-bold text-slate-600"
+                              >
+                                {partner.name}
+                              </span>
+                            )
+                          )}
+                        </div>
+                      </div>
+                    )}
                   </div>
                   <div className="flex lg:items-start">
                     <WhatsAppButton

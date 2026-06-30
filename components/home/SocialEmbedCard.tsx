@@ -59,9 +59,15 @@ export default function SocialEmbedCard({ embed }: { embed: SocialEmbed }) {
     );
   }
 
+  // No fixed aspect ratio or overflow-hidden here once the real embed loads:
+  // TikTok's and Instagram's own scripts size their iframe (including the
+  // caption/controls chrome at the bottom), and that height is often taller
+  // than a strict 9:16 box — clipping it was the original cause of the
+  // cut-off embeds. min-height keeps the skeleton/loading state from
+  // collapsing before the script renders the real iframe.
   return (
-    <div ref={containerRef} className="aspect-[9/16] overflow-hidden rounded-xl bg-brand-cloud">
-      {!isVisible && <div className="h-full w-full animate-pulse" aria-hidden="true" />}
+    <div ref={containerRef} className="min-h-[580px] overflow-visible rounded-xl bg-brand-cloud">
+      {!isVisible && <div className="aspect-[9/16] w-full animate-pulse rounded-xl" aria-hidden="true" />}
 
       {isVisible && embed.platform === "tiktok" && embed.tiktokVideoId && (
         <blockquote

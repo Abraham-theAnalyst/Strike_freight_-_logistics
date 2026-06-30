@@ -30,11 +30,6 @@ export const stockImages = {
     alt: "Open delivery van packed with cardboard boxes ready for dispatch",
     credit: "https://www.pexels.com/photo/6407553/",
   },
-  worldwideShopping: {
-    src: "https://images.pexels.com/photos/6956903/pexels-photo-6956903.jpeg",
-    alt: "Laptop surrounded by shopping bags and parcel boxes",
-    credit: "https://www.pexels.com/photo/6956903/",
-  },
   warehouseHandling: {
     src: "https://images.pexels.com/photos/4487383/pexels-photo-4487383.jpeg",
     alt: "Warehouse staff carrying a package between storage shelves",
@@ -59,7 +54,6 @@ export const serviceStockImages: Record<string, StockImageKey> = {
   "air-freight": "airFreight",
   "sea-freight": "seaFreight",
   courier: "courier",
-  "worldwide-shopping": "worldwideShopping",
 };
 
 /** Maps each routes.id (lib/site-data.ts) to its supporting visual. */

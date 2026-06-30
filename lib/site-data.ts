@@ -22,10 +22,14 @@ export const SITE_URL = "https://strikefreightlogistics.vercel.app";
 export const businessInfo = {
   name: "Strike Freight & Logistics",
   shortName: "Strike Freight",
-  legalName: "Strike Freight & Logistics", // [CONFIRM] registered company name, if different
+  legalName: "Strike Freight & Logistics",
+  registrationNumber: "RC 7652119",
+  foundedYear: 2023,
+  yearsInOperation: "3+",
+  positioning: "Send & receive parcels between Nigeria and the world by Air, Sea or Courier.",
   tagline: "Cargo in 7–10 Days. Courier in 2–5 Days. We Ship Every Friday.",
   metaDescription:
-    "Strike Freight & Logistics ships cargo, courier and shop-and-ship parcels between Nigeria and the USA, UK, Canada, Europe and Germany. Real Ogba office, weekly Friday shipping. Book on WhatsApp or get a quote.",
+    "Strike Freight & Logistics sends and receives parcels between Nigeria and the UK, USA, Canada and Europe by air, sea or courier. Real Ogba office, weekly Friday shipping. Book on WhatsApp or get a quote.",
 
   // Primary WhatsApp line — used for every "Book on WhatsApp" button and
   // wa.me link sitewide (header, hero, calculator, forms, footer).
@@ -99,7 +103,6 @@ export const whatsappMessages = {
   getQuote: "Hi Strike Freight, I'd like a quote for shipping. Here are my details:",
   notSure: "Hi Strike Freight, I'm not sure which service fits what I need. Can you help?",
   trackPrefix: "Hi Strike Freight, please can you give me an update on my shipment?",
-  usAddress: "Hi Strike Freight, please can I get my free US/UK/Canada shopping address?",
   officeLocation: "Hi Strike Freight, please can you confirm your office drop-off location and opening hours?",
 };
 
@@ -110,7 +113,7 @@ export const whatsappMessages = {
 export const navLinks = [
   { label: "How It Works", href: "/how-it-works" },
   { label: "Services", href: "/services" },
-  { label: "Pricing", href: "/pricing" },
+  { label: "Get a Quote", href: "/pricing" },
   { label: "Track", href: "/track" },
   { label: "What We Ship", href: "/what-we-ship" },
   { label: "About", href: "/about" },
@@ -147,98 +150,70 @@ export const timelines = {
 // -----------------------------------------------------------------------------
 // Routes we serve
 // -----------------------------------------------------------------------------
-// `confirmed: false` means the rate is an illustrative placeholder — the
-// calculator and route cards both render a "[CONFIRM]" flag whenever this
-// is false, so nothing reads as a final, guaranteed price.
+// No pricing here by design — rates vary by weight, route and exchange rate,
+// so every route is quoted on WhatsApp instead of shown as a fixed price.
 
-export type RateCurrency = "USD" | "GBP" | "EUR" | "CAD";
-
-export interface RouteRate {
-  amount: number;
-  currency: RateCurrency;
-  confirmed: boolean;
-}
+export type ShippingMode = "Air" | "Sea" | "Courier" | "Pickup";
 
 export interface ShippingRoute {
   id: string;
   name: string;
   flag: string;
   blurb: string;
-  cargoRate: RouteRate;
-  courierRate: RouteRate;
-  direction: ("import" | "export")[];
+  modes: ShippingMode[];
+  duration: string;
+  note?: string;
+  whatsappMessage: string;
 }
 
 export const routes: ShippingRoute[] = [
   {
-    id: "usa",
-    name: "USA",
-    flag: "🇺🇸",
-    blurb: "Shopping from the States or sending cargo there? We handle both, from a Lagos pickup to a US doorstep.",
-    cargoRate: { amount: 8, currency: "USD", confirmed: false },
-    courierRate: { amount: 12, currency: "USD", confirmed: false },
-    direction: ["import", "export"],
-  },
-  {
     id: "uk",
     name: "UK",
     flag: "🇬🇧",
-    blurb: "Need a UK address to shop with, or sending cargo and courier across? We do both, door to door.",
-    cargoRate: { amount: 6, currency: "GBP", confirmed: false },
-    courierRate: { amount: 10, currency: "GBP", confirmed: false },
-    direction: ["import", "export"],
+    blurb: "Sending or receiving between Lagos and the UK, door to door.",
+    modes: ["Air", "Sea"],
+    duration: "7–10 working days",
+    whatsappMessage: "Hi Strike, I'd like a quote for shipping to the UK.",
+  },
+  {
+    id: "usa",
+    name: "USA",
+    flag: "🇺🇸",
+    blurb: "Cargo between Lagos and the States, from pickup to US doorstep.",
+    modes: ["Air"],
+    duration: "14 working days",
+    whatsappMessage: "Hi Strike, I'd like a quote for shipping to the USA.",
   },
   {
     id: "canada",
     name: "Canada",
     flag: "🇨🇦",
-    blurb: "We move cargo and courier between Lagos and Canada, handled properly on both ends.",
-    cargoRate: { amount: 9, currency: "CAD", confirmed: false },
-    courierRate: { amount: 13, currency: "CAD", confirmed: false },
-    direction: ["import", "export"],
+    blurb: "Parcels between Lagos and our Pickering, Canada office.",
+    modes: ["Pickup"],
+    duration: "Varies, ask for a quote",
+    note: "Pickup only, at our Pickering, Canada office. Doorstep delivery is available via Canada Post, UPS or FedEx, at the customer's own cost.",
+    whatsappMessage: "Hi Strike, I'd like a quote for shipping to Canada.",
   },
   {
     id: "europe",
     name: "Europe / Germany",
     flag: "🇪🇺",
-    blurb: "Germany and the rest of the EU, covered: cargo, courier and shop-and-ship in one place.",
-    cargoRate: { amount: 7, currency: "EUR", confirmed: false },
-    courierRate: { amount: 11, currency: "EUR", confirmed: false },
-    direction: ["import", "export"],
+    blurb: "Germany and the rest of the EU, covered by air or sea.",
+    modes: ["Air", "Sea"],
+    duration: "10–14 working days",
+    whatsappMessage: "Hi Strike, I'd like a quote for shipping to Europe.",
   },
   {
     id: "worldwide",
     name: "Worldwide",
     flag: "🌍",
-    blurb: "Don't see your country listed? Message us your route on WhatsApp and we'll sort you out.",
-    cargoRate: { amount: 8, currency: "USD", confirmed: false },
-    courierRate: { amount: 12, currency: "USD", confirmed: false },
-    direction: ["import", "export"],
+    blurb: "Don't see your country listed? We ship to pretty much anywhere else, too.",
+    modes: ["Air", "Sea", "Courier"],
+    duration: "Varies by destination, ask for a quote",
+    whatsappMessage: "Hi Strike, I'd like a quote for shipping. My destination isn't listed.",
   },
 ];
-
-export const currencySymbols: Record<RateCurrency, string> = {
-  USD: "$",
-  GBP: "£",
-  EUR: "€",
-  CAD: "C$",
-};
-
-// -----------------------------------------------------------------------------
-// Pricing calculator configuration
-// -----------------------------------------------------------------------------
-
-export const calculatorConfig = {
-  // [CONFIRM] minimum billable weight per shipment, in kg.
-  minimumBillableWeightKg: 1,
-  // [CONFIRM] flat handling fee added to every estimate, in Naira. Set to 0 to disable.
-  handlingFeeNGN: 0,
-  // Standard air-freight volumetric divisor (cm³ ÷ divisor = volumetric kg). [CONFIRM]
-  volumetricDivisor: 5000,
-  volumetricExplainer:
-    "Got something big but light, like a box of clothes or a carton? We charge whichever is more: what it weighs on the scale, or its volumetric weight (a number based on how much space it takes up). Every freight company does it this way. It just keeps things fair when space matters as much as weight.",
-  disclaimer: "This is a rough guide, not a final price. We'll confirm the exact cost on WhatsApp once we see what you're sending.",
-};
 
 // -----------------------------------------------------------------------------
 // Services
@@ -250,7 +225,7 @@ export interface ServiceItem {
   summary: string;
   details: string[];
   timeline: string;
-  icon: "plane" | "ship" | "courier" | "shopping";
+  icon: "plane" | "ship" | "courier";
 }
 
 export const services: ServiceItem[] = [
@@ -290,22 +265,29 @@ export const services: ServiceItem[] = [
     timeline: "2–5 working days",
     icon: "courier",
   },
-  {
-    id: "worldwide-shopping",
-    title: "Worldwide Shopping (Shop & Ship)",
-    summary: "Shop any international store you like, and we'll receive, consolidate and ship it home to you.",
-    details: [
-      "Get a free shopping address in the US, UK or Canada and shop wherever you want.",
-      "Don't have an international card? Send us the link or store name and we'll buy it for you.",
-      "We check, photograph and group your items together so they go out on the next Friday shipment.",
-    ],
-    timeline: "Ships every Friday",
-    icon: "shopping",
-  },
 ];
 
 // -----------------------------------------------------------------------------
-// How It Works — Import (Shop & Ship) and Export (Cargo & Courier) flows
+// Courier partners — shown in the Courier service section ("We partner with").
+// -----------------------------------------------------------------------------
+
+export interface CourierPartner {
+  name: string;
+  // Drop a logo file at /public/images/partners/{name}.png|svg and set
+  // `logo` to that path to render the real mark. Leave undefined to show a
+  // clean text label instead (current default — no logo files supplied yet).
+  logo?: string;
+}
+
+export const courierPartners: CourierPartner[] = [
+  { name: "DHL" },
+  { name: "FedEx" },
+  { name: "UPS" },
+  { name: "Aramex" },
+];
+
+// -----------------------------------------------------------------------------
+// How It Works — single flow: get a quote, drop off or pickup, we ship, track
 // -----------------------------------------------------------------------------
 
 export interface FlowStep {
@@ -314,30 +296,7 @@ export interface FlowStep {
   description: string;
 }
 
-export const importFlowSteps: FlowStep[] = [
-  {
-    step: 1,
-    title: "Get your free US/UK/Canada address",
-    description: "We hand you a free shipping address abroad, or skip that entirely and just send us the link. We'll shop for you.",
-  },
-  {
-    step: 2,
-    title: "Shop your favourite stores",
-    description: "Shop online like you normally would, fashion, gadgets, whatever you need, and have it shipped to your new address.",
-  },
-  {
-    step: 3,
-    title: "We receive, verify & consolidate",
-    description: "Once your items land at our warehouse, we check them over, snap photos, and group everything into one shipment.",
-  },
-  {
-    step: 4,
-    title: "We ship every Friday",
-    description: "Your parcel goes out with that week's Friday shipment and is tracked all the way to your door in Nigeria.",
-  },
-];
-
-export const exportFlowSteps: FlowStep[] = [
+export const howItWorksSteps: FlowStep[] = [
   {
     step: 1,
     title: "Get a quote on WhatsApp",
@@ -345,17 +304,17 @@ export const exportFlowSteps: FlowStep[] = [
   },
   {
     step: 2,
-    title: "Drop off or request pickup",
+    title: "Drop off at our Ogba office or request pickup",
     description: "Bring it down to our Ogba office, or let us know and we'll arrange a pickup near you in Lagos.",
   },
   {
     step: 3,
     title: "We pack, weigh & ship",
-    description: "We pack it the right way, weigh it, lock in your final price, and book it on cargo (7–10 days) or courier (2–5 days).",
+    description: "We pack it the right way, weigh it, lock in your final price, and book it on air, sea or courier.",
   },
   {
     step: 4,
-    title: "Track & receive worldwide",
+    title: "Track and receive worldwide",
     description: "From there, we keep you posted on WhatsApp until it lands safely, wherever in the world it's headed.",
   },
 ];
@@ -453,7 +412,7 @@ export const trustReasons = [
 // customer question and a frequent source of scam confusion in this market.
 export const paymentPolicy = {
   intl:
-    "International shipments (cargo, courier and worldwide shopping) are paid for before they ship. That's standard practice across the freight industry, and it's what lets us guarantee your spot on the next Friday shipment.",
+    "International shipments (cargo and courier) are paid for before they ship. That's standard practice across the freight industry, and it's what lets us guarantee your spot on the next Friday shipment.",
   local: "Pay-on-delivery only works for certain local Lagos pickup or drop-off arrangements agreed beforehand. It doesn't apply to the international shipping cost.",
   methods: ["Bank transfer", "Paystack (card/bank)"], // [CONFIRM] exact accepted payment rails
 };
@@ -540,9 +499,9 @@ export const socialEmbeds: SocialEmbed[] = [
 export const statsBandEnabled = true;
 
 export const stats = [
-  { label: "Shipments completed", value: "[CONFIRM]" },
-  { label: "Happy customers", value: "[CONFIRM]" },
-  { label: "Years in operation", value: "[CONFIRM]" },
+  { label: "Shipments completed", value: "100+" },
+  { label: "DHL · FedEx · UPS · Aramex", value: "Trusted Partners" },
+  { label: "Years in operation", value: "3+" },
 ];
 
 // -----------------------------------------------------------------------------
@@ -584,10 +543,6 @@ export const faqs: FaqItem[] = [
     question: "What happens if my package is delayed or lost?",
     answer:
       "Your shipment is insured from the moment we receive it. If a delay comes up, we'll reach out on WhatsApp with the reason and a new expected date before you even have to ask. On the rare occasion something is lost or damaged, contact us right away and we'll open a claim and sort it out with you directly.",
-  },
-  {
-    question: "Can you shop for me if I don't have an international card?",
-    answer: "That's exactly what our worldwide shopping service is built for. Send us the link (or just tell us the store and item), pay us in Naira, and we'll buy it, receive it, and ship it to you.",
   },
   {
     question: "How do I track my shipment?",

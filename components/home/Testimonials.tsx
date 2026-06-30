@@ -38,7 +38,7 @@ export default function Testimonials() {
 
         <div className="mt-14">
           <SectionHeading title="Real Deliveries, Real Customers." />
-          <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-3">
+          <div className="mt-6 grid grid-cols-1 items-start gap-5 sm:grid-cols-3">
             {socialEmbeds.map((embed) => (
               <SocialEmbedCard key={embed.id} embed={embed} />
             ))}

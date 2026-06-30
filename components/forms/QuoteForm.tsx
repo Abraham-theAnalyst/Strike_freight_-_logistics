@@ -11,7 +11,7 @@ interface FormValues {
   whatsapp: string;
   email: string;
   direction: "import" | "export";
-  service: "cargo" | "courier" | "shopping";
+  service: "cargo" | "courier";
   route: string;
   weight: string;
   message: string;
@@ -32,7 +32,7 @@ const initialValues: FormValues = {
 
 function buildQuoteMessage(values: FormValues): string {
   const route = routes.find((r) => r.id === values.route)?.name ?? values.route;
-  const serviceLabel = { cargo: "Cargo", courier: "Courier", shopping: "Worldwide Shopping" }[values.service];
+  const serviceLabel = { cargo: "Cargo", courier: "Courier" }[values.service];
   const lines = [
     "Hi Strike Freight, I'd like to book a shipment / get a quote.",
     "",
@@ -223,7 +223,6 @@ export default function QuoteForm({ variant = "quote" }: { variant?: Variant }) 
               >
                 <option value="cargo">Cargo</option>
                 <option value="courier">Courier</option>
-                <option value="shopping">Worldwide Shopping</option>
               </select>
             </div>
             <div>

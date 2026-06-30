@@ -34,7 +34,6 @@ export const serviceIconMap: Record<string, IconComponent> = {
   plane: Plane,
   ship: Ship,
   courier: Truck,
-  shopping: ShoppingBag,
 };
 
 export const categoryIconMap: Record<string, IconComponent> = {

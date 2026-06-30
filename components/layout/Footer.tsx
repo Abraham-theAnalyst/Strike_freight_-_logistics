@@ -22,8 +22,9 @@ export default function Footer() {
             className="mb-3"
           />
           <p className="mt-4 text-sm leading-relaxed text-white/80">
-            International air freight, sea freight, courier and worldwide shopping between Nigeria and the world.
+            International air freight, sea freight and courier between Nigeria and the world.
           </p>
+          <p className="mt-2 text-xs text-white/50">{businessInfo.registrationNumber}</p>
           <div className="mt-5 flex items-center gap-3">
             <a
               href={businessInfo.socials.instagram}

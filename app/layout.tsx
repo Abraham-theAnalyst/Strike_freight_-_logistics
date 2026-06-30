@@ -15,20 +15,20 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(businessInfo.siteUrl),
   title: {
-    default: `${businessInfo.name} | Cargo, Courier & Worldwide Shopping`,
+    default: `${businessInfo.name} | Cargo, Courier & Air/Sea Freight`,
     template: `%s | ${businessInfo.shortName}`,
   },
   description: businessInfo.metaDescription,
   openGraph: {
     type: "website",
     siteName: businessInfo.name,
-    title: `${businessInfo.name} | Cargo, Courier & Worldwide Shopping`,
+    title: `${businessInfo.name} | Cargo, Courier & Air/Sea Freight`,
     description: businessInfo.metaDescription,
     locale: "en_NG",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${businessInfo.name} | Cargo, Courier & Worldwide Shopping`,
+    title: `${businessInfo.name} | Cargo, Courier & Air/Sea Freight`,
     description: businessInfo.metaDescription,
   },
 };

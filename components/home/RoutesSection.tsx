@@ -2,7 +2,8 @@ import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import PhotoPlaceholder from "@/components/ui/PhotoPlaceholder";
-import { routes, currencySymbols } from "@/lib/site-data";
+import Badge from "@/components/ui/Badge";
+import { routes } from "@/lib/site-data";
 import { stockImages, routeStockImages } from "@/lib/stock-images";
 
 export default function RoutesSection() {
@@ -12,7 +13,7 @@ export default function RoutesSection() {
         <SectionHeading
           eyebrow="Routes We Serve"
           title="Wherever you're sending to, we've got a way there."
-          description="Pick your route to see a starting rate, then get your exact quote on WhatsApp in minutes."
+          description="Pick your route to see how it ships and how long it takes, then get your exact quote on WhatsApp in minutes."
         />
 
         <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -32,19 +33,18 @@ export default function RoutesSection() {
                     <h3 className="text-lg font-bold text-brand-navy">{route.name}</h3>
                   </div>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600">{route.blurb}</p>
-                  <p className="mt-4 text-sm font-semibold text-slate-700">
-                    Cargo from {currencySymbols[route.cargoRate.currency]}
-                    {route.cargoRate.amount}/kg{" "}
-                    {!route.cargoRate.confirmed && <span className="font-normal text-brand-red">[CONFIRM]</span>}
-                  </p>
-                  <p className="text-sm font-semibold text-slate-700">
-                    Courier from {currencySymbols[route.courierRate.currency]}
-                    {route.courierRate.amount}/kg{" "}
-                    {!route.courierRate.confirmed && <span className="font-normal text-brand-red">[CONFIRM]</span>}
-                  </p>
+
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {route.modes.map((mode) => (
+                      <Badge key={mode}>{mode}</Badge>
+                    ))}
+                  </div>
+                  <p className="mt-3 text-sm font-semibold text-slate-700">{route.duration}</p>
+                  {route.note && <p className="mt-1 text-xs leading-relaxed text-slate-500">{route.note}</p>}
+
                   <WhatsAppButton
-                    message={`Hi Strike Freight, I'd like a quote for shipping to/from ${route.name}.`}
-                    label="Get exact quote"
+                    message={route.whatsappMessage}
+                    label="Get a Quote on WhatsApp"
                     variant="ghost"
                     className="mt-5"
                   />

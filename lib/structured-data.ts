@@ -20,7 +20,7 @@ export function getLocalBusinessSchema() {
   };
 }
 
-/** Service JSON-LD entries for each freight/courier/shopping offering. */
+/** Service JSON-LD entries for each freight/courier offering. */
 export function getServicesSchema() {
   return services.map((service) => ({
     "@context": "https://schema.org",

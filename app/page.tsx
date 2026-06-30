@@ -5,7 +5,6 @@ import RoutesSection from "@/components/home/RoutesSection";
 import HowItWorks from "@/components/home/HowItWorks";
 import FridayShipping from "@/components/home/FridayShipping";
 import WhatWeShip from "@/components/home/WhatWeShip";
-import PricingCalculator from "@/components/home/PricingCalculator";
 import WhyTrust from "@/components/home/WhyTrust";
 import Testimonials from "@/components/home/Testimonials";
 import StatsBand from "@/components/home/StatsBand";
@@ -16,7 +15,7 @@ import { getLocalBusinessSchema, getServicesSchema } from "@/lib/structured-data
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: `${businessInfo.name} | Cargo, Courier & Worldwide Shopping`,
+  title: `${businessInfo.name} | Cargo, Courier & Air/Sea Freight`,
   description: businessInfo.metaDescription,
   path: "/",
 });
@@ -36,7 +35,6 @@ export default function HomePage() {
       <HowItWorks />
       <FridayShipping />
       <WhatWeShip />
-      <PricingCalculator />
       <WhyTrust />
       <Testimonials />
       <StatsBand />

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Button from "@/components/ui/Button";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import Container from "@/components/ui/Container";
-import { whatsappMessages } from "@/lib/site-data";
+import { whatsappMessages, businessInfo } from "@/lib/site-data";
 
 export default function Hero() {
   return (
@@ -27,7 +27,7 @@ export default function Hero() {
       <Container className="relative flex min-h-[520px] items-center py-12 sm:min-h-[560px] sm:py-16 lg:min-h-[640px] lg:py-24">
         <div className="max-w-xl">
           <h1 className="text-3xl font-extrabold leading-tight text-white sm:text-4xl md:text-5xl">
-            Send &amp; Receive Anything Between Nigeria and the World by Air, Sea or Courier.
+            {businessInfo.positioning}
           </h1>
           <p className="mt-4 text-base font-semibold text-white/90 sm:text-lg">
             Cargo in 7–10 days · Courier in 2–5 days · We ship every Friday.
@@ -39,7 +39,7 @@ export default function Hero() {
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <WhatsAppButton message={whatsappMessages.bookNow} size="lg" />
-            <Button href="#calculator" variant="outline" size="lg">
+            <Button href="/pricing" variant="outline" size="lg">
               Get a Quote
             </Button>
           </div>

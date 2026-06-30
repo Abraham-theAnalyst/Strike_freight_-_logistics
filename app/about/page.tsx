@@ -12,7 +12,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "About Us: Our Story & Office",
   description:
-    "Strike Freight & Logistics is a Lagos-based cargo, courier and worldwide shopping company with a real office in Ogba. Here's our story and our promise to you.",
+    "Strike Freight & Logistics is a Lagos-based cargo and courier company with a real office in Ogba, sending and receiving parcels between Nigeria and the world since 2023. Here's our story and our promise to you.",
   path: "/about",
 });
 
@@ -38,11 +38,12 @@ export default function AboutPage() {
               </p>
               <p>
                 Whether you&apos;re a family bringing in food and personal items, a small business shipping product,
-                or someone shopping your favourite international stores for the first time, we handle your shipment
-                the same way: carefully, and on schedule, with nothing hidden from you.
+                or sending something out of Nigeria for the first time, we handle your shipment the same way:
+                carefully, and on schedule, with nothing hidden from you.
               </p>
-              <p className="text-sm text-slate-400">
-                [CONFIRM: founding year / years in operation, if you&apos;d like it included here.]
+              <p className="text-sm font-semibold text-slate-500">
+                Founded in {businessInfo.foundedYear} · {businessInfo.yearsInOperation} years in operation ·{" "}
+                {businessInfo.registrationNumber}
               </p>
             </div>
             <Button href="/contact#map" variant="ghost" className="mt-6">
