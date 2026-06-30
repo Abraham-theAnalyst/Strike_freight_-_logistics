@@ -27,20 +27,17 @@ export const businessInfo = {
   metaDescription:
     "Strike Freight & Logistics ships cargo, courier and shop-and-ship parcels between Nigeria and the USA, UK, Canada, Europe and Germany. Real Ogba office, weekly Friday shipping. Book on WhatsApp or get a quote.",
 
-  // WhatsApp line — used for every wa.me booking/quote link sitewide.
-  // [CONFIRM] One flyer shows 09051178525, another shows 09051175825 — confirm
-  // the correct live WhatsApp number with the client before launch.
-  whatsappNumberRaw: "09051178525",
-  whatsappNumberIntl: "2349051178525",
+  // Primary WhatsApp line — used for every "Book on WhatsApp" button and
+  // wa.me link sitewide (header, hero, calculator, forms, footer).
+  whatsappNumberRaw: "09051175825",
+  whatsappNumberIntl: "2349051175825",
 
-  // Office/voice call line — intentionally different from the WhatsApp
-  // number above. Shown in the footer and used as the tel: link.
+  // Primary office/voice call line — intentionally different from the
+  // WhatsApp number above. Shown in the footer and used as the tel: link.
   phoneNumberRaw: "09028319799",
   phoneNumberIntl: "+2349028319799",
 
-  // [CONFIRM] Flyers show both "frieght"/"freight" spelling and both gmail/yahoo
-  // domains — confirm the exact live inbox before launch.
-  email: "strikefrieghtlogistics@gmail.com",
+  email: "strikefreightlogistics@gmail.com",
 
   address: {
     suite: "Suite H101",
@@ -54,9 +51,9 @@ export const businessInfo = {
   },
 
   socials: {
-    instagram: "https://instagram.com/strikefreightlogistics", // [CONFIRM] exact handle URL
-    tiktok: "https://www.tiktok.com/@strikefreightlogistics", // [CONFIRM] exact handle URL
-    facebook: "https://facebook.com/strikefreightlogistics", // [CONFIRM] exact handle URL
+    instagram: "https://www.instagram.com/strikefreightlogistic",
+    tiktok: "https://www.tiktok.com/@strikefreightlogistics",
+    facebook: "https://www.facebook.com/share/1CpCMNoBRe/",
   },
 
   siteUrl: SITE_URL,
@@ -66,6 +63,25 @@ export const businessInfo = {
     note: "Closed Sundays and public holidays.", // [CONFIRM]
   },
 };
+
+// -----------------------------------------------------------------------------
+// Contact numbers — both lines are reachable by phone call AND WhatsApp.
+// Used by the Contact page to list each number with both options, distinct
+// from businessInfo.whatsappNumberIntl/phoneNumberIntl above, which set the
+// single primary number used for sitewide "Book on WhatsApp" buttons and the
+// header/footer tel: link.
+// -----------------------------------------------------------------------------
+
+export interface ContactNumber {
+  raw: string;
+  callIntl: string; // for tel: links
+  whatsappIntl: string; // for wa.me links (digits only, no +)
+}
+
+export const contactNumbers: ContactNumber[] = [
+  { raw: "09028319799", callIntl: "+2349028319799", whatsappIntl: "2349028319799" },
+  { raw: "09051175825", callIntl: "+2349051175825", whatsappIntl: "2349051175825" },
+];
 
 // -----------------------------------------------------------------------------
 // WhatsApp helpers — single source of truth for every wa.me link on the site
@@ -487,12 +503,34 @@ export interface SocialEmbed {
   platform: "instagram" | "tiktok";
   caption: string;
   url: string;
+  // Required for TikTok's official blockquote embed (data-video-id). The
+  // vt.tiktok.com short links resolve to this canonical video URL/ID via
+  // TikTok's redirect — resolved once and hardcoded here so the embed
+  // doesn't depend on a redirect resolving at render time.
+  tiktokVideoId?: string;
 }
 
 export const socialEmbeds: SocialEmbed[] = [
-  { id: "s1", platform: "instagram", caption: "[CONFIRM: paste real Instagram reel URL]", url: "" },
-  { id: "s2", platform: "tiktok", caption: "[CONFIRM: paste real TikTok video URL]", url: "" },
-  { id: "s3", platform: "instagram", caption: "[CONFIRM: paste real Instagram reel URL]", url: "" },
+  {
+    id: "s1",
+    platform: "tiktok",
+    caption: "Behind the scenes of how your delivery moves.",
+    url: "https://www.tiktok.com/@strikefreightlogistics/video/7635976463312817424",
+    tiktokVideoId: "7635976463312817424",
+  },
+  {
+    id: "s2",
+    platform: "instagram",
+    caption: "A real delivery, straight from us to you.",
+    url: "https://www.instagram.com/reel/DYM4C4INcoQ/",
+  },
+  {
+    id: "s3",
+    platform: "tiktok",
+    caption: "Another shipment, another delivery made.",
+    url: "https://www.tiktok.com/@strikefreightlogistics/video/7511775491347467526",
+    tiktokVideoId: "7511775491347467526",
+  },
 ];
 
 // -----------------------------------------------------------------------------

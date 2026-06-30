@@ -4,8 +4,8 @@ import PageHero from "@/components/ui/PageHero";
 import Container from "@/components/ui/Container";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import QuoteForm from "@/components/forms/QuoteForm";
-import { InstagramIcon, FacebookIcon, TikTokIcon } from "@/components/icons/brand-icons";
-import { businessInfo } from "@/lib/site-data";
+import { InstagramIcon, FacebookIcon, TikTokIcon, WhatsAppIcon } from "@/components/icons/brand-icons";
+import { businessInfo, contactNumbers, buildWhatsAppLink, whatsappMessages } from "@/lib/site-data";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -44,12 +44,28 @@ export default function ContactPage() {
                 <MapPin className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand-red" aria-hidden="true" />
                 <span className="text-sm leading-relaxed text-slate-700">{businessInfo.address.full}</span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="h-5 w-5 flex-shrink-0 text-brand-red" aria-hidden="true" />
-                <a href={`tel:${businessInfo.phoneNumberIntl}`} className="text-sm font-semibold text-slate-700 hover:text-brand-navy">
-                  {businessInfo.phoneNumberRaw}
-                </a>
-              </li>
+              {contactNumbers.map((number) => (
+                <li key={number.raw} className="flex items-center gap-3">
+                  <Phone className="h-5 w-5 flex-shrink-0 text-brand-red" aria-hidden="true" />
+                  <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-semibold text-slate-700">
+                    {number.raw}
+                    <span className="text-slate-300" aria-hidden="true">|</span>
+                    <a href={`tel:${number.callIntl}`} className="hover:text-brand-navy">
+                      Call
+                    </a>
+                    <span className="text-slate-300" aria-hidden="true">|</span>
+                    <a
+                      href={buildWhatsAppLink(whatsappMessages.general, number.whatsappIntl)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 hover:text-brand-navy"
+                    >
+                      <WhatsAppIcon size={14} />
+                      WhatsApp
+                    </a>
+                  </span>
+                </li>
+              ))}
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 flex-shrink-0 text-brand-red" aria-hidden="true" />
                 <a href={`mailto:${businessInfo.email}`} className="break-all text-sm font-semibold text-slate-700 hover:text-brand-navy">

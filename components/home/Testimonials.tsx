@@ -1,7 +1,7 @@
 import { Star, User } from "lucide-react";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
-import PhotoPlaceholder from "@/components/ui/PhotoPlaceholder";
+import SocialEmbedCard from "@/components/home/SocialEmbedCard";
 import { testimonials, socialEmbeds } from "@/lib/site-data";
 
 export default function Testimonials() {
@@ -36,15 +36,11 @@ export default function Testimonials() {
           ))}
         </div>
 
-        <div className="mt-12">
-          <p className="text-sm font-bold uppercase tracking-wide text-slate-500">Delivery Feed</p>
-          <div className="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-3">
+        <div className="mt-14">
+          <SectionHeading title="Real Deliveries, Real Customers." />
+          <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-3">
             {socialEmbeds.map((embed) => (
-              <PhotoPlaceholder
-                key={embed.id}
-                aspect="aspect-[9/16]"
-                label={`${embed.platform === "instagram" ? "Instagram" : "TikTok"} embed slot: ${embed.caption}`}
-              />
+              <SocialEmbedCard key={embed.id} embed={embed} />
             ))}
           </div>
         </div>

@@ -45,29 +45,31 @@ A few things live in their own small files because they're not plain content:
 Open `lib/site-data.ts` and edit the top of `businessInfo`:
 
 ```ts
-whatsappNumberRaw: "09051178525",      // local format, for display
-whatsappNumberIntl: "2349051178525",   // intl format (no +, no spaces), used in wa.me links
+whatsappNumberRaw: "09051175825",      // local format, for display
+whatsappNumberIntl: "2349051175825",   // intl format (no +, no spaces), used in wa.me links
 phoneNumberRaw: "09028319799",
 phoneNumberIntl: "+2349028319799",
-email: "strikefrieghtlogistics@gmail.com",
+email: "strikefreightlogistics@gmail.com",
 ```
 
 Every WhatsApp button/link on the site goes through `buildWhatsAppLink()` in the same file, so
 changing `whatsappNumberIntl` updates every CTA at once — header, floating button, hero,
 calculator, forms, footer, everything.
 
+The Contact page additionally lists both numbers together, each reachable by call and WhatsApp —
+edit the `contactNumbers` array in the same file to add, remove or change those entries.
+
 ## Where to add the logo and photos
 
-**Logo:** there is no real logo file yet, so `components/layout/Logo.tsx` renders a coded
-placeholder (navy "SF" badge + wordmark) that matches the brief's description. Once you have the
-real logo:
+**Logo:** the real logo is in place at `public/logo.png` (exported from the client-supplied PDF),
+used by `components/layout/Logo.tsx` (header) and `components/layout/Footer.tsx`. If a vector file
+becomes available:
 
-1. Drop the file at `public/logo.svg` (preferred) or `public/logo.png`.
-2. In `components/layout/Logo.tsx`, replace the placeholder markup with an `<Image>` (see the
-   comment at the top of that file for the exact snippet).
-3. The favicon (`app/icon.tsx`) and social share image (`app/opengraph-image.tsx`) are also
-   currently generated placeholders — update them the same way once you have real brand assets,
-   or just delete them and drop a static `favicon.ico` / `opengraph-image.jpg` in `app/` instead.
+1. Drop the file at `public/logo.svg`.
+2. In `components/layout/Logo.tsx` and `components/layout/Footer.tsx`, change `src="/logo.png"` to
+   `src="/logo.svg"`.
+3. The favicon (`app/icon.tsx`) currently renders a matching blue "F" mark programmatically — swap
+   it for a static `favicon.ico` only if you want pixel-exact branding there too.
 
 **Photos:** every photo slot on the site (hero, office interior/exterior, packed parcels, about
 team, testimonial avatars, Instagram/TikTok embeds) renders through the `PhotoPlaceholder`
@@ -139,12 +141,14 @@ status inline. The exact spot is marked with `// TODO`.
       header and footer. Replace with `public/logo.svg` if a vector file becomes available.
 
 **Contact details** (`lib/site-data.ts` → `businessInfo`)
-- [ ] WhatsApp number — flyers show both `09051178525` and `09051175825`; the site currently uses
-      the first. Confirm the correct live number.
-- [ ] Email spelling/domain — flyers show both "frieght"/"freight" and gmail/yahoo. The site
-      currently uses `strikefrieghtlogistics@gmail.com`.
+- [x] Primary WhatsApp number confirmed: `09051175825` (`businessInfo.whatsappNumberIntl`),
+      used for every "Book on WhatsApp" button and wa.me link sitewide.
+- [x] Primary call number confirmed: `09028319799` (`businessInfo.phoneNumberIntl`), used for the
+      header/footer tel: link. Both numbers are also listed together on the Contact page, each
+      reachable by call and WhatsApp (`lib/site-data.ts` → `contactNumbers`).
+- [x] Email confirmed and typo fixed: `strikefreightlogistics@gmail.com`.
 - [ ] Registered/legal company name, if different from "Strike Freight & Logistics".
-- [ ] Exact Instagram, TikTok and Facebook handle URLs.
+- [x] Exact Instagram, TikTok and Facebook handle URLs confirmed (`lib/site-data.ts` → `socials`).
 - [ ] Custom domain. The site is currently live at the real Vercel URL
       (`https://strikefreightlogistics.vercel.app`, set as `SITE_URL` in `lib/site-data.ts`) — not
       a placeholder. If you connect a custom domain (e.g. `www.strikefreightlogistics.com`) later,
