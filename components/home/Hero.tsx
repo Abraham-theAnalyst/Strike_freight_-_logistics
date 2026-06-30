@@ -1,15 +1,31 @@
+import Image from "next/image";
 import Button from "@/components/ui/Button";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
-import PhotoPlaceholder from "@/components/ui/PhotoPlaceholder";
 import Container from "@/components/ui/Container";
-import { Plane } from "lucide-react";
 import { whatsappMessages } from "@/lib/site-data";
 
 export default function Hero() {
   return (
-    <section className="bg-brand-navy">
-      <Container className="grid grid-cols-1 items-center gap-10 py-12 sm:py-16 lg:grid-cols-2 lg:py-20">
-        <div className="order-1">
+    <section className="relative isolate overflow-hidden bg-brand-navy">
+      <Image
+        src="/images/hero-freight.jpg"
+        alt="Shipping containers stacked at a busy port at sunset"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover"
+      />
+      {/* Brand-navy gradient: near-opaque behind the headline so white text
+          stays AA-readable, fading out to let the photo show through. Mobile
+          stacks the content below the fold of the image, so the overlay runs
+          top-to-bottom there instead of left-to-right. */}
+      <div
+        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(30,42,156,0.92)_0%,rgba(30,42,156,0.85)_55%,rgba(30,42,156,0.78)_100%)] sm:bg-[linear-gradient(100deg,rgba(30,42,156,0.92)_0%,rgba(30,42,156,0.55)_60%,rgba(30,42,156,0.25)_100%)]"
+        aria-hidden="true"
+      />
+
+      <Container className="relative flex min-h-[520px] items-center py-12 sm:min-h-[560px] sm:py-16 lg:min-h-[640px] lg:py-24">
+        <div className="max-w-xl">
           <h1 className="text-3xl font-extrabold leading-tight text-white sm:text-4xl md:text-5xl">
             Send &amp; Receive Anything Between Nigeria and the World by Air, Sea or Courier.
           </h1>
@@ -27,17 +43,6 @@ export default function Hero() {
               Get a Quote
             </Button>
           </div>
-        </div>
-
-        <div className="order-2">
-          <PhotoPlaceholder
-            label="Photo: cargo plane loading or Strike Freight parcels ready for shipment. Replace at /public/images/hero-freight.jpg"
-            aspect="aspect-[5/4]"
-            priority
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            icon={<Plane className="h-10 w-10 text-brand-navy/40" aria-hidden="true" />}
-            className="border-white/30 bg-white/10 [&>p]:text-white/70"
-          />
         </div>
       </Container>
     </section>
