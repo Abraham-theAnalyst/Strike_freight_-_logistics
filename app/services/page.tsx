@@ -33,7 +33,7 @@ export default function ServicesPage() {
             const Icon = serviceIconMap[service.icon];
             const image = stockImages[serviceStockImages[service.id]];
             return (
-              <div key={service.id} id={service.id} data-reveal className="overflow-hidden rounded-2xl border border-brand-line bg-white transition-shadow duration-200 hover:shadow-md">
+              <div key={service.id} id={service.id} data-reveal className="card-img-zoom overflow-hidden rounded-2xl border border-brand-line bg-white transition-shadow duration-200 hover:shadow-md">
                 <PhotoPlaceholder
                   src={image.src}
                   alt={image.alt}

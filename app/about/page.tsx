@@ -50,7 +50,7 @@ export default function AboutPage() {
               See Drop-off / Office Location
             </Button>
           </div>
-          <figure className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+          <figure data-reveal-img className="relative aspect-[4/3] overflow-hidden rounded-2xl">
             <Image
               src="/images/office-inside.jpg"
               alt="A Strike Freight & Logistics team member processing shipments at the Ogba office"
@@ -95,7 +95,7 @@ export default function AboutPage() {
               {businessInfo.hours.weekdays}. {businessInfo.hours.note}
             </p>
             <div className="mt-6 grid grid-cols-2 gap-4">
-              <figure className="relative aspect-square overflow-hidden rounded-xl">
+              <figure data-reveal-img className="relative aspect-square overflow-hidden rounded-xl">
                 <Image
                   src="/images/office-front.jpg"
                   alt="Strike Freight & Logistics office entrance at Suite H101, Ogba Central Mall, Ogba, Lagos"
@@ -108,7 +108,7 @@ export default function AboutPage() {
                   Visit us at Suite H101, Ogba Central Mall, Ogba, Lagos.
                 </figcaption>
               </figure>
-              <figure className="relative aspect-square overflow-hidden rounded-xl">
+              <figure data-reveal-img className="relative aspect-square overflow-hidden rounded-xl">
                 <Image
                   src="/images/office-inside.jpg"
                   alt="Inside the Strike Freight & Logistics office in Ogba, Lagos"

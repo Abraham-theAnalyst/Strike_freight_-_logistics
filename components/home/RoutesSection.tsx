@@ -23,7 +23,7 @@ export default function RoutesSection() {
               <div
                 key={route.id}
                 data-reveal-item
-                className="flex flex-col overflow-hidden rounded-xl border border-brand-line bg-white shadow-sm transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:shadow-md"
+                className="card-img-zoom flex flex-col overflow-hidden rounded-xl border border-brand-line bg-white shadow-sm transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:shadow-md"
               >
                 <PhotoPlaceholder src={image.src} alt={image.alt} aspect="aspect-[16/9]" sizes="(min-width: 1024px) 400px, 100vw" />
                 <div className="flex flex-1 flex-col p-6">

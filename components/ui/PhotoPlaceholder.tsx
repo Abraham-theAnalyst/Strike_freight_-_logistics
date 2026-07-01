@@ -32,7 +32,7 @@ export default function PhotoPlaceholder({
   if (src) {
     return (
       <div className={`relative overflow-hidden rounded-xl ${aspect} ${className}`}>
-        <Image src={src} alt={alt ?? label ?? ""} fill priority={priority} sizes={sizes} className="object-cover" />
+        <Image src={src} alt={alt ?? label ?? ""} fill priority={priority} sizes={sizes} className="object-cover settle-img" />
       </div>
     );
   }

@@ -54,6 +54,13 @@ export default function ScrollRevealInit() {
       io.observe(el);
     });
 
+    // [data-reveal-img] — image containers (fade + scale settle)
+    document.querySelectorAll<HTMLElement>("[data-reveal-img]").forEach((el) => {
+      if (el.getBoundingClientRect().top < window.innerHeight) return;
+      el.classList.add("reveal-ready");
+      io.observe(el);
+    });
+
     // [data-stagger] — grid/list containers
     document.querySelectorAll<HTMLElement>("[data-stagger]").forEach((el) => {
       if (el.getBoundingClientRect().top < window.innerHeight) return;

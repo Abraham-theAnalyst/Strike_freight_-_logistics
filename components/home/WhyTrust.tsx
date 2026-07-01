@@ -36,7 +36,7 @@ export default function WhyTrust() {
 
         <div className="grid grid-cols-2 gap-4">
           {/* office-front.jpg — H101 shopfront, full-width slot */}
-          <figure className="relative col-span-2 aspect-square overflow-hidden rounded-xl">
+          <figure data-reveal-img className="relative col-span-2 aspect-square overflow-hidden rounded-xl">
             <Image
               src="/images/office-front.jpg"
               alt="Strike Freight & Logistics office entrance at Suite H101, Ogba Central Mall, Ogba, Lagos"
@@ -51,7 +51,7 @@ export default function WhyTrust() {
           </figure>
 
           {/* office-inside.jpg — staff at desk */}
-          <figure className="relative aspect-square overflow-hidden rounded-xl">
+          <figure data-reveal-img className="relative aspect-square overflow-hidden rounded-xl">
             <Image
               src="/images/office-inside.jpg"
               alt="Inside the Strike Freight & Logistics office in Ogba, Lagos"

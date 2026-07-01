@@ -17,7 +17,9 @@ export default function HowItWorks() {
           description="From quote to delivery, in four steps."
         />
 
-        <PhotoPlaceholder src={image.src} alt={image.alt} aspect="aspect-[21/8]" sizes="100vw" className="mt-8" />
+        <div data-reveal-img className="mt-8">
+          <PhotoPlaceholder src={image.src} alt={image.alt} aspect="aspect-[21/8]" sizes="100vw" />
+        </div>
 
         <ol className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4" data-stagger>
           {howItWorksSteps.map((step) => (

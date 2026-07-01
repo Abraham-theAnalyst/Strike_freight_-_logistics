@@ -41,7 +41,9 @@ export default function WhatWeShipPage() {
 
       <section className="pt-14 sm:pt-20">
         <Container>
-          <PhotoPlaceholder src={stockImages.boxesStack.src} alt={stockImages.boxesStack.alt} aspect="aspect-[21/7]" sizes="100vw" />
+          <div data-reveal-img>
+            <PhotoPlaceholder src={stockImages.boxesStack.src} alt={stockImages.boxesStack.alt} aspect="aspect-[21/7]" sizes="100vw" />
+          </div>
         </Container>
       </section>
 

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Button from "@/components/ui/Button";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import Container from "@/components/ui/Container";
-import { whatsappMessages, businessInfo } from "@/lib/site-data";
+import { whatsappMessages } from "@/lib/site-data";
 
 export default function Hero() {
   return (
@@ -13,7 +13,7 @@ export default function Hero() {
         fill
         priority
         sizes="100vw"
-        className="object-cover"
+        className="object-cover ken-burns"
       />
       {/* Brand-navy gradient: near-opaque behind the headline so white text
           stays AA-readable, fading out to let the photo show through. Mobile
@@ -26,18 +26,23 @@ export default function Hero() {
 
       <Container className="relative flex min-h-[520px] items-center py-12 sm:min-h-[560px] sm:py-16 lg:min-h-[640px] lg:py-24">
         <div className="max-w-xl">
+          {/* Line-by-line stagger via pure CSS — text is in DOM immediately
+              for SEO/LCP; .hero-line clips + .hero-l* animates each span up.
+              Falls back to fully visible under prefers-reduced-motion. */}
           <h1 className="text-3xl font-extrabold leading-tight text-white sm:text-4xl md:text-5xl">
-            {businessInfo.positioning}
+            <span className="hero-line hero-l0"><span>Send &amp; receive parcels</span></span>{" "}
+            <span className="hero-line hero-l1"><span>between Nigeria and the world</span></span>{" "}
+            <span className="hero-line hero-l2"><span>by Air, Sea or Courier.</span></span>
           </h1>
-          <p className="mt-4 text-base font-semibold text-white/90 sm:text-lg">
+          <p className="hero-fd0 mt-4 text-base font-semibold text-white/90 sm:text-lg">
             Cargo in 7–10 days · Courier in 2–5 days · We ship every Friday.
           </p>
-          <p className="mt-3 max-w-lg text-sm leading-relaxed text-white/75 sm:text-base">
+          <p className="hero-fd1 mt-3 max-w-lg text-sm leading-relaxed text-white/75 sm:text-base">
             Lagos to London, New York, Toronto, and everywhere in between. Book your shipment or get a free quote
             in minutes, from a real Ogba office staffed by people who actually reply on WhatsApp.
           </p>
 
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+          <div className="hero-fd2 mt-7 flex flex-col gap-3 sm:flex-row">
             <WhatsAppButton message={whatsappMessages.bookNow} size="lg" />
             <Button href="/pricing" variant="outline" size="lg">
               Get a Quote
