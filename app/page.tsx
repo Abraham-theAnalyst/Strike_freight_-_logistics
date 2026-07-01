@@ -3,6 +3,7 @@ import Hero from "@/components/home/Hero";
 import TrustBar from "@/components/home/TrustBar";
 import RoutesSection from "@/components/home/RoutesSection";
 import HowItWorks from "@/components/home/HowItWorks";
+import ServicesPreview from "@/components/home/ServicesPreview";
 import FridayShipping from "@/components/home/FridayShipping";
 import WhatWeShip from "@/components/home/WhatWeShip";
 import WhyTrust from "@/components/home/WhyTrust";
@@ -38,6 +39,7 @@ export default function HomePage() {
       <TrustBar />
       <RoutesSection />
       <HowItWorks />
+      <ServicesPreview />
       <FridayShipping />
       <WhatWeShip />
       <WhyTrust />

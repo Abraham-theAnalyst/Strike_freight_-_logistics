@@ -10,11 +10,11 @@ export default function PartnersSection() {
       <Container className="max-w-3xl text-center">
         <p className="text-sm font-bold uppercase tracking-wide text-brand-red">Our Partners</p>
         <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-brand-navy sm:text-3xl">
-          Backed by the world's most trusted carriers
+          The carriers behind our courier service
         </h2>
         <p className="mx-auto mt-3 max-w-xl text-base leading-relaxed text-slate-600">
-          For courier and last-mile delivery, we work with DHL, FedEx, UPS and Aramex — so your parcels move on
-          the same networks the biggest names in global shipping rely on.
+          For courier and last-mile delivery, we work with DHL, FedEx, UPS and Aramex. Your parcel moves on
+          their networks, tracked from pickup to the door.
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4 sm:gap-6">
