@@ -7,18 +7,26 @@ import QuoteForm from "@/components/forms/QuoteForm";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import CTABand from "@/components/ui/CTABand";
 import { whatsappMessages } from "@/lib/site-data";
+import { getBreadcrumbSchema } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Get a Quote: Pricing by Route",
+  title: "Get a Shipping Quote: Lagos to UK, USA, Canada & More | Strike Freight",
   description:
-    "Pricing is quoted per shipment on WhatsApp because rates vary by route, weight and exchange rates. Check delivery times by route, then send your details for an exact price.",
+    "Get a freight or courier quote for your shipment from Lagos to the UK, USA, Canada, Europe or worldwide. We price every shipment on WhatsApp — no hidden fees, just your exact rate.",
   path: "/pricing",
 });
 
 export default function PricingPage() {
+  const breadcrumb = getBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Get a Quote", path: "/pricing" },
+  ]);
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+
       <PageHero
         eyebrow="Get a Quote"
         title="Your exact price, confirmed on WhatsApp."

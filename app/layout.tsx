@@ -16,21 +16,30 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(businessInfo.siteUrl),
   title: {
-    default: `${businessInfo.name} | Cargo, Courier & Air/Sea Freight`,
+    default: `${businessInfo.name} | Cargo, Courier & Air/Sea Freight — Lagos`,
     template: `%s | ${businessInfo.shortName}`,
   },
   description: businessInfo.metaDescription,
   openGraph: {
     type: "website",
     siteName: businessInfo.name,
-    title: `${businessInfo.name} | Cargo, Courier & Air/Sea Freight`,
+    title: `${businessInfo.name} | Cargo, Courier & Air/Sea Freight — Lagos`,
     description: businessInfo.metaDescription,
     locale: "en_NG",
+    images: [
+      {
+        url: "/images/hero-freight.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Strike Freight & Logistics — International Cargo & Courier from Lagos, Nigeria",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${businessInfo.name} | Cargo, Courier & Air/Sea Freight`,
+    title: `${businessInfo.name} | Cargo, Courier & Air/Sea Freight — Lagos`,
     description: businessInfo.metaDescription,
+    images: ["/images/hero-freight.jpg"],
   },
 };
 

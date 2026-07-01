@@ -7,18 +7,27 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 import CTABand from "@/components/ui/CTABand";
 import { trustReasons, businessInfo } from "@/lib/site-data";
+import { getBreadcrumbSchema, getOrganizationSchema } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "About Us: Our Story & Office",
+  title: "About Strike Freight & Logistics | Lagos Shipping Company, Ogba",
   description:
-    "Strike Freight & Logistics is a Lagos-based cargo and courier company with a real office in Ogba, sending and receiving parcels between Nigeria and the world since 2023. Here's our story and our promise to you.",
+    "Strike Freight & Logistics is a registered Lagos shipping company (RC 7652119) at Suite H101, Ogba, Lagos. Sending and receiving cargo since 2023. Visit our office or learn our story.",
   path: "/about",
 });
 
 export default function AboutPage() {
+  const breadcrumb = getBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+  ]);
+  const organization = getOrganizationSchema();
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} />
       <PageHero
         eyebrow="About Us"
         title="A Lagos team helping you move things across the world, without the wahala."

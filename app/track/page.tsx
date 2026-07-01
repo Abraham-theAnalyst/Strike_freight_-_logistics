@@ -4,11 +4,13 @@ import PageHero from "@/components/ui/PageHero";
 import Container from "@/components/ui/Container";
 import TrackForm from "@/components/forms/TrackForm";
 import CTABand from "@/components/ui/CTABand";
+import { getBreadcrumbSchema } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Track My Shipment",
-  description: "Track your Strike Freight & Logistics shipment by name or waybill reference and get a fast status update on WhatsApp.",
+  title: "Track My Shipment from Lagos | Strike Freight & Logistics",
+  description:
+    "Track your Strike Freight & Logistics cargo or courier shipment by name or waybill number. Enter your details and we'll send a fast status update on WhatsApp.",
   path: "/track",
 });
 
@@ -19,8 +21,15 @@ const helpPoints = [
 ];
 
 export default function TrackPage() {
+  const breadcrumb = getBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Track My Shipment", path: "/track" },
+  ]);
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+
       <PageHero
         eyebrow="Track Shipment"
         title="Where's my package?"

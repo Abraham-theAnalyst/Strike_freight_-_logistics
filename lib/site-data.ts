@@ -280,10 +280,10 @@ export interface CourierPartner {
 }
 
 export const courierPartners: CourierPartner[] = [
-  { name: "DHL" },
-  { name: "FedEx" },
-  { name: "UPS" },
-  { name: "Aramex" },
+  { name: "Aramex", logo: "/images/partners/aramex.png" },
+  { name: "DHL",    logo: "/images/partners/dhl.png"    },
+  { name: "FedEx",  logo: "/images/partners/fedex.jpg"  },
+  { name: "UPS",    logo: "/images/partners/ups.jpg"    },
 ];
 
 // -----------------------------------------------------------------------------

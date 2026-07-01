@@ -6,18 +6,28 @@ import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import QuoteForm from "@/components/forms/QuoteForm";
 import { InstagramIcon, FacebookIcon, TikTokIcon, WhatsAppIcon } from "@/components/icons/brand-icons";
 import { businessInfo, contactNumbers, buildWhatsAppLink, whatsappMessages } from "@/lib/site-data";
+import { getBreadcrumbSchema, getLocalBusinessSchema } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Contact Us",
+  title: "Contact Strike Freight | Ogba Lagos Office, WhatsApp & Phone",
   description:
-    "Reach Strike Freight & Logistics on WhatsApp, phone or email, or visit our Ogba, Lagos office. Find us on the map and send us a message.",
+    "Visit Strike Freight & Logistics at Suite H101, Ogba Central Mall, Lagos. Call, WhatsApp or email us for shipping quotes, tracking or any question. Open Mon–Sat, 9am–6pm.",
   path: "/contact",
 });
 
 export default function ContactPage() {
+  const breadcrumb = getBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Contact", path: "/contact" },
+  ]);
+  const localBusiness = getLocalBusinessSchema();
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }} />
+
       <PageHero
         eyebrow="Contact"
         title="Talk to us. We reply fast."

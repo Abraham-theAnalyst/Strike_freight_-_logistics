@@ -14,12 +14,13 @@ import {
 } from "@/lib/site-data";
 import { categoryIconMap } from "@/components/icons/icon-map";
 import { stockImages } from "@/lib/stock-images";
+import { getBreadcrumbSchema } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "What We Ship: Categories & Restricted Items",
+  title: "What We Ship: Food, Documents, Gadgets & More | Strike Freight Lagos",
   description:
-    "See the categories of goods Strike Freight & Logistics ships most, plus a destination-by-destination guide to prohibited and restricted items.",
+    "See what Strike Freight & Logistics ships internationally from Lagos — food, clothing, documents, gadgets, shoes and machines. Plus a guide to restricted and prohibited items by destination.",
   path: "/what-we-ship",
 });
 
@@ -31,8 +32,15 @@ const destinationLabels: Record<string, string> = {
 };
 
 export default function WhatWeShipPage() {
+  const breadcrumb = getBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "What We Ship", path: "/what-we-ship" },
+  ]);
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+
       <PageHero
         eyebrow="What We Ship"
         title="From food to gadgets, if it's legal to ship, we've probably moved it."

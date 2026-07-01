@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 function NumericCounter({ target, suffix }: { target: number; suffix: string }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
-  const started = useRef(false);
+  const rafId = useRef<number>(0);
 
   useEffect(() => {
     const el = ref.current;
@@ -18,27 +18,33 @@ function NumericCounter({ target, suffix }: { target: number; suffix: string }) 
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting || started.current) return;
-        started.current = true;
+        cancelAnimationFrame(rafId.current);
 
-        const DURATION = 1400;
-        const startTime = performance.now();
+        if (entry.isIntersecting) {
+          const DURATION = 1400;
+          const startTime = performance.now();
 
-        const frame = (now: number) => {
-          const progress = Math.min((now - startTime) / DURATION, 1);
-          const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-          setCount(Math.round(eased * target));
-          if (progress < 1) requestAnimationFrame(frame);
-        };
+          const frame = (now: number) => {
+            const progress = Math.min((now - startTime) / DURATION, 1);
+            const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+            setCount(Math.round(eased * target));
+            if (progress < 1) rafId.current = requestAnimationFrame(frame);
+          };
 
-        requestAnimationFrame(frame);
-        observer.disconnect();
+          rafId.current = requestAnimationFrame(frame);
+        } else {
+          // Element left the viewport — reset so the next entry re-animates
+          setCount(0);
+        }
       },
       { threshold: 0.5 }
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(rafId.current);
+    };
   }, [target]);
 
   return (

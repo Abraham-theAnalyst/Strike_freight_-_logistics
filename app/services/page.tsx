@@ -9,18 +9,26 @@ import CTABand from "@/components/ui/CTABand";
 import { services, courierPartners } from "@/lib/site-data";
 import { serviceIconMap } from "@/components/icons/icon-map";
 import { stockImages, serviceStockImages } from "@/lib/stock-images";
+import { getBreadcrumbSchema } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Services: Air Freight, Sea Freight & Courier",
+  title: "Air Freight, Sea Freight & Courier from Lagos, Nigeria | Strike Freight",
   description:
-    "Air freight, sea freight and courier between Nigeria and the USA, UK, Canada, Europe, Germany and beyond.",
+    "International air freight (7–10 days), sea freight and DHL/FedEx/UPS courier from Lagos, Nigeria to the UK, USA, Canada, Germany and worldwide. Real Ogba office. Get a quote on WhatsApp.",
   path: "/services",
 });
 
 export default function ServicesPage() {
+  const breadcrumb = getBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Services", path: "/services" },
+  ]);
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+
       <PageHero
         eyebrow="Services"
         title="Whatever you're moving, however fast you need it."
@@ -64,28 +72,22 @@ export default function ServicesPage() {
                     {service.id === "courier" && (
                       <div className="mt-5">
                         <p className="text-xs font-bold uppercase tracking-wide text-slate-500">We partner with</p>
-                        <div className="mt-2 flex flex-wrap gap-3">
-                          {courierPartners.map((partner) =>
-                            // Drop a logo file at /public/images/partners/ and set
-                            // `partner.logo` in site-data.ts to render it here instead.
-                            partner.logo ? (
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {courierPartners.filter((p) => p.logo).map((partner) => (
+                            <span
+                              key={partner.name}
+                              className="flex items-center justify-center rounded-lg border border-brand-line bg-white px-3 py-1.5 shadow-sm"
+                            >
                               <Image
-                                key={partner.name}
-                                src={partner.logo}
+                                src={partner.logo!}
                                 alt={partner.name}
-                                width={96}
-                                height={32}
-                                className="h-8 w-auto object-contain"
+                                width={72}
+                                height={28}
+                                className="h-7 object-contain"
+                                style={{ width: "auto" }}
                               />
-                            ) : (
-                              <span
-                                key={partner.name}
-                                className="rounded-lg border border-brand-line bg-brand-cloud px-3 py-1.5 text-sm font-bold text-slate-600"
-                              >
-                                {partner.name}
-                              </span>
-                            )
-                          )}
+                            </span>
+                          ))}
                         </div>
                       </div>
                     )}
