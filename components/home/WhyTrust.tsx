@@ -17,9 +17,9 @@ export default function WhyTrust() {
             description="In a market full of fly-by-night shippers, here's what makes Strike Freight different."
           />
 
-          <ul className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <ul className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2" data-stagger>
             {trustReasons.map((reason) => (
-              <li key={reason.title} className="flex gap-3 rounded-xl border border-brand-line bg-white p-4">
+              <li key={reason.title} data-reveal-item className="flex gap-3 rounded-xl border border-brand-line bg-white p-4">
                 <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand-red" aria-hidden="true" />
                 <div>
                   <p className="text-sm font-bold text-brand-navy">{reason.title}</p>

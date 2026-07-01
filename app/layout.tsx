@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppFloatButton from "@/components/layout/WhatsAppFloatButton";
+import ScrollRevealInit from "@/components/ScrollRevealInit";
 import { businessInfo } from "@/lib/site-data";
 
 const inter = Inter({
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         >
           Skip to main content
         </a>
+        <ScrollRevealInit />
         <Header />
         <main id="main-content" className="flex-1">
           {children}

@@ -14,9 +14,9 @@ export default function Testimonials() {
           description="[CONFIRM: these are placeholder slots. Swap in real customer reviews and photos before launch.]"
         />
 
-        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-3" data-stagger>
           {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="rounded-xl border border-brand-line bg-white p-6">
+            <div key={testimonial.id} data-reveal-item className="rounded-xl border border-brand-line bg-white p-6">
               <div className="flex items-center gap-1 text-brand-red" aria-label={`${testimonial.rating} out of 5 stars`}>
                 {Array.from({ length: testimonial.rating }).map((_, i) => (
                   <Star key={i} size={16} fill="currentColor" />
@@ -38,9 +38,11 @@ export default function Testimonials() {
 
         <div className="mt-14">
           <SectionHeading title="Real Deliveries, Real Customers." />
-          <div className="mt-6 grid grid-cols-1 items-start gap-5 sm:grid-cols-3">
+          <div className="mt-6 grid grid-cols-1 items-start gap-5 sm:grid-cols-3" data-stagger>
             {socialEmbeds.map((embed) => (
-              <SocialEmbedCard key={embed.id} embed={embed} />
+              <div key={embed.id} data-reveal-item>
+                <SocialEmbedCard embed={embed} />
+              </div>
             ))}
           </div>
         </div>

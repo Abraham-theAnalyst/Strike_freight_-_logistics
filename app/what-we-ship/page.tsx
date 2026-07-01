@@ -48,13 +48,14 @@ export default function WhatWeShipPage() {
       <section className="py-14 sm:py-20">
         <Container>
           <SectionHeading eyebrow="Categories" title="What we ship most" />
-          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4" data-stagger>
             {shippingCategories.map((category) => {
               const Icon = categoryIconMap[category.icon];
               return (
                 <div
                   key={category.id}
-                  className="flex flex-col items-center gap-3 rounded-xl border border-brand-line bg-white p-5 text-center transition-shadow hover:shadow-md"
+                  data-reveal-item
+                  className="flex flex-col items-center gap-3 rounded-xl border border-brand-line bg-white p-5 text-center transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:shadow-md"
                 >
                   <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-navy/10 text-brand-navy">
                     <Icon size={22} />

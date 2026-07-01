@@ -50,10 +50,20 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile menu panel */}
-      {open && (
-        <nav id="mobile-menu" aria-label="Primary mobile" className="border-t border-brand-line bg-white px-4 pb-4 lg:hidden">
-          <ul className="flex flex-col gap-1 pt-2">
+      {/* Mobile menu — always rendered, grid-rows animates open/close */}
+      <nav
+        id="mobile-menu"
+        aria-label="Primary mobile"
+        aria-hidden={!open}
+        className="overflow-hidden border-t border-brand-line bg-white lg:hidden"
+        style={{
+          display: "grid",
+          gridTemplateRows: open ? "1fr" : "0fr",
+          transition: "grid-template-rows 250ms ease",
+        }}
+      >
+        <div className="overflow-hidden">
+          <ul className="flex flex-col gap-1 px-4 pb-4 pt-2">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
@@ -66,11 +76,11 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          <div className="mt-3 flex flex-col gap-2 sm:hidden">
+          <div className="mt-3 flex flex-col gap-2 px-4 pb-4 sm:hidden">
             <WhatsAppButton size="lg" />
           </div>
-        </nav>
-      )}
+        </div>
+      </nav>
     </header>
   );
 }

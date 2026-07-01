@@ -19,9 +19,9 @@ export default function HowItWorks() {
 
         <PhotoPlaceholder src={image.src} alt={image.alt} aspect="aspect-[21/8]" sizes="100vw" className="mt-8" />
 
-        <ol className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4" data-stagger>
           {howItWorksSteps.map((step) => (
-            <li key={step.step} className="relative rounded-xl border border-brand-line bg-white p-6">
+            <li key={step.step} data-reveal-item className="relative rounded-xl border border-brand-line bg-white p-6">
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-red text-sm font-bold text-white">
                 {step.step}
               </span>

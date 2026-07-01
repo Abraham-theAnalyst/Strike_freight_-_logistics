@@ -59,6 +59,46 @@ body {
   }
 }
 
+/* ---------------------------------------------------------------------------
+   Scroll-reveal — applied by ScrollRevealInit.tsx via IntersectionObserver.
+   Elements start visible (no class); JS adds .reveal-ready to off-screen
+   elements, then .revealed when they enter the viewport.
+   The reduced-motion rule above collapses both transitions to 0.01ms.
+--------------------------------------------------------------------------- */
+.reveal-ready {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+.reveal-ready.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger items (children of [data-stagger] containers) */
+[data-reveal-item].reveal-ready {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 480ms ease, transform 480ms ease;
+}
+[data-reveal-item].reveal-ready.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------------------------------------------------------------------------
+   WhatsApp floating button — slow, subtle pulse ring.
+   Killed by the reduced-motion rule above (animation-duration → 0.01ms).
+--------------------------------------------------------------------------- */
+@keyframes wa-pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(225, 29, 42, 0.45); }
+  65%  { box-shadow: 0 0 0 11px rgba(225, 29, 42, 0);   }
+  100% { box-shadow: 0 0 0 0   rgba(225, 29, 42, 0);    }
+}
+.wa-pulse {
+  animation: wa-pulse 2.8s ease-out infinite;
+}
+
 /* Visible, consistent focus ring for keyboard navigation (WCAG). */
 :focus-visible {
   outline: 2px solid var(--brand-red);

@@ -16,13 +16,14 @@ export default function RoutesSection() {
           description="Pick your route to see how it ships and how long it takes, then get your exact quote on WhatsApp in minutes."
         />
 
-        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3" data-stagger>
           {routes.map((route) => {
             const image = stockImages[routeStockImages[route.id]];
             return (
               <div
                 key={route.id}
-                className="flex flex-col overflow-hidden rounded-xl border border-brand-line bg-white shadow-sm transition-shadow hover:shadow-md"
+                data-reveal-item
+                className="flex flex-col overflow-hidden rounded-xl border border-brand-line bg-white shadow-sm transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:shadow-md"
               >
                 <PhotoPlaceholder src={image.src} alt={image.alt} aspect="aspect-[16/9]" sizes="(min-width: 1024px) 400px, 100vw" />
                 <div className="flex flex-1 flex-col p-6">
